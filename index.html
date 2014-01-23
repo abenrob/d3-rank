@@ -74,19 +74,18 @@ function buildChart(){
             .classed('label-no-accent', true)
             .classed('label-accent', false)
     }
-    var click = function(selectorclass){
-        d3.selectAll('.line-click')
-            .classed('line-click', false)
-            .classed('line-accent', false)
-            .classed('line-no-accent', true)
-        d3.selectAll('.label-click')
-            .classed('label-click', false)
-            .classed('label-accent', false)
-            .classed('label-no-accent', true)
-        d3.selectAll('.'+selectorclass+'_line')
-            .classed('line-click', true)
-        d3.selectAll('.'+selectorclass+'_text')
-            .classed('label-click', true)
+    var click = function(element,selectorclass){
+        if ( d3.select(element)[0][0].classList.contains('line-click') || d3.select(element)[0][0].classList.contains('label-click')) {
+            d3.selectAll('.'+selectorclass+'_line')
+                .classed('line-click', false)
+            d3.selectAll('.'+selectorclass+'_text')
+                .classed('label-click', false)
+        } else {
+            d3.selectAll('.'+selectorclass+'_line')
+                .classed('line-click', true)
+            d3.selectAll('.'+selectorclass+'_text')
+                .classed('label-click', true)
+        }
     }
     var rectSlide = function(idx){
         var rect = d3.select("rect");
@@ -166,7 +165,7 @@ function buildChart(){
             .attr("d",function(d,i){return pathfunction({len:lookup.length,data:d.data})})
             .on("mouseover", function(d){mouseOver(d.metric)})
             .on("mouseout", function(d){mouseOut(d.metric)})
-            .on("click", function(d){click(d.metric)})
+            .on("click", function(d){click(this,d.metric)})
 
     // pull put keys only for headers
     var keys = d3.keys(dataset);
@@ -221,7 +220,7 @@ function buildChart(){
                     .classed("label-no-accent", true)
                     .attr("x", function(d, idx){
                         if ( d ) {
-                            return metricwidth * i + linePadding;
+                            return metricwidth * i + linePadding + 5;
                         }
                     })
                     .attr("y", function(d, idx){
@@ -237,7 +236,7 @@ function buildChart(){
                     })
                     .on("mouseover", function(d){mouseOver(d.id)})
                     .on("mouseout", function(d){mouseOut(d.id)})
-                    .on("click", function(d){click(d.id)})
+                    .on("click", function(d){click(this,d.id)})
         })
 }
 </script>
