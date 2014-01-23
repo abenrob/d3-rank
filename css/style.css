@@ -1,0 +1,49 @@
+@font-face {
+    font-family: "Oswald";
+    src: url("fonts/Oswald-Regular.ttf");
+}
+@font-face {
+    font-family: "Oswald";
+    src: url("fonts/Oswald-Bold.ttf");
+    font-weight: bold;
+}
+
+body {
+    font-family: "Oswald";
+    font: 10px;
+    background-color: #e2e2e1;
+}
+.viz {
+    margin-left: 20px;
+}
+.headertext {
+    padding: 0 4px;
+    text-transform: uppercase;
+    fill: #656565;
+}
+.header-accent {
+    fill: black;
+    font-weight: bold;
+}
+.line {
+    stroke: #aaaaab;
+    stroke-width: 2;
+    fill: none;
+}
+.line-accent {
+    stroke: cornflowerblue;
+    stroke-width: 4;
+    fill: none;
+}
+.label {
+    font-size: 12px;
+    fill: #e2e2e1;
+}
+.label-accent {
+    font-size: 14px;
+    fill: cornflowerblue;
+}
+
+.label, .line , .headertext{
+    cursor: pointer;
+}
